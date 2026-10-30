@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Expense &amp; Budget Visualizer</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <h1>Expense &amp; Budget Visualizer</h1>
+      <button id="theme-toggle" class="ghost" type="button">Dark mode</button>
+    </header>
+
+    <section id="balance-card" class="hero" aria-live="polite">
+      <p class="hero-label">Total balance</p>
+      <p id="total" class="hero-amount">Rp0</p>
+      <p id="limit-note" class="hero-note" hidden></p>
+    </section>
+
+    <section class="card">
+      <h2>Add transaction</h2>
+      <form id="expense-form" novalidate>
+        <label for="item-name">Item name</label>
+        <input id="item-name" type="text" maxlength="60" placeholder="e.g. Lunch at campus">
+
+        <label for="amount">Amount (Rp)</label>
+        <input id="amount" type="number" inputmode="numeric" min="1" step="1" placeholder="e.g. 15000">
+
+        <label for="category">Category</label>
+        <select id="category">
+          <option value="">Choose a category</option>
+          <option value="Food">Food</option>
+          <option value="Transport">Transport</option>
+          <option value="Fun">Fun</option>
+        </select>
+
+        <p id="form-error" class="error" role="alert" hidden></p>
+        <button type="submit" class="primary">Add transaction</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Spending limit</h2>
+      <label for="limit-input">Highlight when total spending goes above (Rp)</label>
+      <div class="row">
+        <input id="limit-input" type="number" inputmode="numeric" min="0" step="1" placeholder="e.g. 500000">
+        <button id="limit-save" type="button" class="primary">Save limit</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Spending by category</h2>
+      <p id="chart-empty" class="empty">Add a transaction to see your chart.</p>
+      <div class="chart-wrap"><canvas id="chart" hidden></canvas></div>
+    </section>
+
+    <section class="card">
+      <h2>Transactions</h2>
+      <p id="list-empty" class="empty">No transactions yet.</p>
+      <ul id="list" class="list"></ul>
+    </section>
+
+    <section class="card">
+      <div class="row between">
+        <h2>Monthly summary</h2>
+        <select id="month-select" aria-label="Choose month"></select>
+      </div>
+      <p id="month-total" class="month-total">Rp0</p>
+      <p id="month-count" class="muted"></p>
+      <ul id="breakdown" class="breakdown"></ul>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
